@@ -147,7 +147,13 @@ def extract_status_history(soup):
 
         city=states[1].text
 
-        city=city.partition("：")[2]
+        try:
+
+            city=city.partition("：")[2]
+
+        except:
+            print('cant partition')
+
 
         detail=states[2].text.replace(",Due to the implementation of community quarantine which limits transportation and mobility, delivery schedules may get affected.Thank you for your patience and understanding.", "")
         
