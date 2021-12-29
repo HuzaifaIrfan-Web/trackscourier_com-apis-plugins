@@ -1,0 +1,109 @@
+version: "3"
+services:
+  # selenium-hub:
+  #   # hostname: "selenium-hub.local"
+  #   image: selenium/hub:3.141.59-20210929
+  #   container_name: selenium-hub
+
+  #   # environment:
+  #     # - GRID_TIMEOUT=20
+  #     # - GRID_BROWSER_TIMEOUT=20
+  #     # - GRID_MAX_SESSION=2
+      
+  #   restart: always
+  #   ports:
+  #     - "4444:4444"
+  #   networks:
+  #     # - selenium-hub
+  #     - grid 
+
+
+  # firefox:
+  #   image: selenium/node-firefox-debug:3.141.59-20210929
+  #   depends_on:
+  #     - selenium-hub
+  #   environment:
+  #     - HUB_HOST=selenium-hub
+  #     - HUB_PORT=4444
+  #     - NODE_MAX_SESSION=10
+  #     - NODE_MAX_INSTANCES=10
+
+  #   volumes:
+  #     - /dev/shm:/dev/shm
+
+
+  #   restart: always
+    
+
+  #   ports:
+  #     - "5900:5900"
+
+  #   networks:
+  #     - grid 
+
+
+
+  jtexpress_my_scraper_api:
+    build: ./jtexpress_my_scraper_api
+    container_name: jtexpress_my_scraper_api
+
+    
+    restart: always
+
+    networks:
+      - apis
+
+
+  jtexpress_ph_scraper_api:
+    build: ./jtexpress_ph_scraper_api
+    container_name: jtexpress_ph_scraper_api
+
+    
+    restart: always
+
+    # depends_on:
+    #   - selenium-hub
+    # environment:
+    #   - HUB_URI=http://host.docker.internal:4444/wd/hub
+
+
+
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+
+
+    # ports:
+    #   - "5000:5000"
+
+    
+    networks:
+      - apis
+
+
+  nginx: 
+    image: nginx:1.21.4
+    container_name: production_nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+
+    restart: always
+    ports:
+      - 5000:80
+      # - 443:443
+
+    
+    depends_on:
+      - jtexpress_ph_scraper_api
+      - jtexpress_my_scraper_api
+
+
+    networks:
+      - apis
+
+
+
+networks:
+
+  # grid:
+  apis:
