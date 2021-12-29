@@ -98,7 +98,7 @@ def use_driver(tnum):
     url=f'https://www.jtexpress.ph/index/query/gzquery.html?bills={tnum}'
     driver.get(url)
     
-    # time.sleep(1)
+    time.sleep(1)
 
 
 
@@ -108,7 +108,7 @@ def use_driver(tnum):
         # el = driver.find_element_by_class_name('bill_state_list')
 
         el = driver.find_element(By.CLASS_NAME, "bill_state_list")
-        
+
         els = driver.find_element(By.CLASS_NAME, "bill_state_item")
 
 
