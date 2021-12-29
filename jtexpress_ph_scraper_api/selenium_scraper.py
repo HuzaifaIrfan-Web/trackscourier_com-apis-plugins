@@ -98,7 +98,7 @@ def use_driver(tnum):
     url=f'https://www.jtexpress.ph/index/query/gzquery.html?bills={tnum}'
     driver.get(url)
     
-    time.sleep(1)
+    # time.sleep(1)
 
 
 
@@ -131,6 +131,7 @@ def extract_status_history(soup):
     histories_div=soup.find_all(class_="bill_state_item")
 
     if len(histories_div) <=0:
+        print('histories_div length zero')
         return False
 
 
