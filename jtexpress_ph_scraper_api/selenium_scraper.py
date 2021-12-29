@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import datetime
 
 import uuid
+import time
 
 
 from selenium import webdriver
@@ -96,6 +97,8 @@ def use_driver(tnum):
 
     url=f'https://www.jtexpress.ph/index/query/gzquery.html?bills={tnum}'
     driver.get(url)
+    
+    time.sleep(1)
 
 
 
