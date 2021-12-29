@@ -49,7 +49,11 @@ def tracking():
 
     tracking_details=return_details(tnum)
 
-    if tracking_details['status_histories'] ==False:
+    try:
+        if tracking_details['status_histories'] ==False:
+            return jsonify({'tnum':tnum, 'message':'Tracking Details Not Found'}), 404
+
+    except:
         return jsonify({'tnum':tnum, 'message':'Tracking Details Not Found'}), 404
 
     return jsonify(tracking_details), 200
