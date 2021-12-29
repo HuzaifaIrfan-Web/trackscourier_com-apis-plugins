@@ -10,18 +10,18 @@
  *
  * @link              http://huzaifairfan.com/
  * @since             1.0.0
- * @package           Jtexpress_My_Scraper_Api_Plugin
+ * @package           jtexpress_ph_Scraper_Api_Plugin
  *
  * @wordpress-plugin
- * Plugin Name:       JTExpress.my Scraper API Plugin
+ * Plugin Name:       JTExpress.ph Scraper API Plugin
  * Plugin URI:        http://huzaifairfan.com/
- * Description:       Display JTExpress.my Tracking Details on your Wordpress Website
+ * Description:       Display JTExpress.ph Tracking Details on your Wordpress Website
  * Version:           1.0.0
  * Author:            Huzaifa Irfan
  * Author URI:        http://huzaifairfan.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       jtexpress-my-scraper-api-plugin
+ * Text Domain:       jtexpress-ph-scraper-api-plugin
  * Domain Path:       /languages
  */
 
@@ -37,15 +37,15 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'JTEXPRESS_MY_SCRAPER_API_PLUGIN_VERSION', '1.0.0' );
+define( 'jtexpress_ph_SCRAPER_API_PLUGIN_VERSION', '1.0.0' );
 
 /**
  * The code that runs during plugin activation.
- * This action is documented in includes/class-jtexpress-my-scraper-api-plugin-activator.php
+ * This action is documented in includes/class-jtexpress-ph-scraper-api-plugin-activator.php
  */
-function activate_jtexpress_my_scraper_api_plugin() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-jtexpress-my-scraper-api-plugin-activator.php';
-	Jtexpress_My_Scraper_Api_Plugin_Activator::activate();
+function activate_jtexpress_ph_scraper_api_plugin() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-jtexpress-ph-scraper-api-plugin-activator.php';
+	jtexpress_ph_Scraper_Api_Plugin_Activator::activate();
 
 
 
@@ -53,13 +53,13 @@ function activate_jtexpress_my_scraper_api_plugin() {
 
 	      $post = array(     
              'post_content'   => '
-            [jtexpress_my_track_form]
-            [jtexpress_my_track_details]
+            [jtexpress_ph_track_form]
+            [jtexpress_ph_track_details]
 
 			
 
              ', //content of page
-             'post_title'     =>'Jtexpress MY Shipment Details', //title of page
+             'post_title'     =>'Jtexpress PH Shipment Details', //title of page
              'post_status'    =>  'publish' , //status of page - publish or draft
              'post_type'      =>  'page'  // type of post
    );
@@ -70,21 +70,21 @@ function activate_jtexpress_my_scraper_api_plugin() {
 
 /**
  * The code that runs during plugin deactivation.
- * This action is documented in includes/class-jtexpress-my-scraper-api-plugin-deactivator.php
+ * This action is documented in includes/class-jtexpress-ph-scraper-api-plugin-deactivator.php
  */
-function deactivate_jtexpress_my_scraper_api_plugin() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-jtexpress-my-scraper-api-plugin-deactivator.php';
-	Jtexpress_My_Scraper_Api_Plugin_Deactivator::deactivate();
+function deactivate_jtexpress_ph_scraper_api_plugin() {
+	require_once plugin_dir_path( __FILE__ ) . 'includes/class-jtexpress-ph-scraper-api-plugin-deactivator.php';
+	jtexpress_ph_Scraper_Api_Plugin_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_jtexpress_my_scraper_api_plugin' );
-register_deactivation_hook( __FILE__, 'deactivate_jtexpress_my_scraper_api_plugin' );
+register_activation_hook( __FILE__, 'activate_jtexpress_ph_scraper_api_plugin' );
+register_deactivation_hook( __FILE__, 'deactivate_jtexpress_ph_scraper_api_plugin' );
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-jtexpress-my-scraper-api-plugin.php';
+require plugin_dir_path( __FILE__ ) . 'includes/class-jtexpress-ph-scraper-api-plugin.php';
 
 /**
  * Begins execution of the plugin.
@@ -95,13 +95,13 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-jtexpress-my-scraper-api-p
  *
  * @since    1.0.0
  */
-function run_jtexpress_my_scraper_api_plugin() {
+function run_jtexpress_ph_scraper_api_plugin() {
 
-	$plugin = new Jtexpress_My_Scraper_Api_Plugin();
+	$plugin = new jtexpress_ph_Scraper_Api_Plugin();
 	$plugin->run();
 
 }
-run_jtexpress_my_scraper_api_plugin();
+run_jtexpress_ph_scraper_api_plugin();
 
 
 
@@ -115,18 +115,18 @@ run_jtexpress_my_scraper_api_plugin();
 // Plugin Admin Page
 
 
-function jtexpress_my_scraper_admin(){
-    add_menu_page('JTExpress.my Scraper Admin','JTExpress.my Scraper Admin','manage_options','jtexpress-my-scraper-admin','jtexpress_my_scraper_admin_page','',200);
+function jtexpress_ph_scraper_admin(){
+    add_menu_page('JTExpress.ph Scraper Admin','JTExpress.ph Scraper Admin','manage_options','jtexpress-ph-scraper-admin','jtexpress_ph_scraper_admin_page','',200);
 }
 
-add_action('admin_menu','jtexpress_my_scraper_admin');
+add_action('admin_menu','jtexpress_ph_scraper_admin');
 
 
-function jtexpress_my_scraper_admin_page(){
+function jtexpress_ph_scraper_admin_page(){
 
 if(array_key_exists('submit_api_url', $_POST)){
-    update_option('jtexpress_my_tracking_api_url',$_POST['api_url']);
-    update_option('jtexpress_my_tracking_details_url',$_POST['details_url']);
+    update_option('jtexpress_ph_tracking_api_url',$_POST['api_url']);
+    update_option('jtexpress_ph_tracking_details_url',$_POST['details_url']);
 
 ?>
 <div id="setting-error-settings-updated" class="updated settings-error notice is-dismissible">
@@ -140,15 +140,15 @@ if(array_key_exists('submit_api_url', $_POST)){
 
 
 
-    $jtexpress_my_tracking_api_url= get_option('jtexpress_my_tracking_api_url','http://localhost:5000/track/jtexpress_my_scraper_api');
-    $jtexpress_my_tracking_details_url= get_option('jtexpress_my_tracking_details_url','/index.php/jtexpress-my-shipment-details/');
+    $jtexpress_ph_tracking_api_url= get_option('jtexpress_ph_tracking_api_url','http://localhost:5000/track/jtexpress_ph_scraper_api');
+    $jtexpress_ph_tracking_details_url= get_option('jtexpress_ph_tracking_details_url','/index.php/jtexpress-ph-shipment-details/');
 
 
 ?>
 
 
 <h2>
-JTExpress.my Scraper API Plugin Admin Page
+JTExpress.ph Scraper API Plugin Admin Page
 </h2>
 
 
@@ -156,10 +156,10 @@ JTExpress.my Scraper API Plugin Admin Page
 <form method="post" action="">
 
 <label for="api_url">API URL:</label>
-<input type="text" name="api_url" value="<?php print $jtexpress_my_tracking_api_url; ?>"/>
+<input type="text" name="api_url" value="<?php print $jtexpress_ph_tracking_api_url; ?>"/>
 <br/>
 <label for="details_url">Tracking Details URL:</label>
-<input type="text" name="details_url" value="<?php print $jtexpress_my_tracking_details_url; ?>"/>
+<input type="text" name="details_url" value="<?php print $jtexpress_ph_tracking_details_url; ?>"/>
 <br/>
 <input type="submit" name="submit_api_url" class="button button-primary">
 </form>
@@ -178,7 +178,7 @@ JTExpress.my Scraper API Plugin Admin Page
 
 
 
-function jtexpress_my_track_form_func(){
+function jtexpress_ph_track_form_func(){
 
     if (isset($_GET['tnum']))
 {
@@ -189,7 +189,7 @@ function jtexpress_my_track_form_func(){
 }
 
 
- $jtexpress_my_tracking_details_url= get_option('jtexpress_my_tracking_details_url','/index.php/jtexpress-my-shipment-details/');
+ $jtexpress_ph_tracking_details_url= get_option('jtexpress_ph_tracking_details_url','/index.php/jtexpress-ph-shipment-details/');
 
 
     $content = "
@@ -198,7 +198,7 @@ function jtexpress_my_track_form_func(){
 <form method='get' action='
 ";
 
- $content .=$jtexpress_my_tracking_details_url;
+ $content .=$jtexpress_ph_tracking_details_url;
 
  $content .="
 '>
@@ -231,7 +231,7 @@ value='
     return $content;
 }
 
-add_shortcode('jtexpress_my_track_form','jtexpress_my_track_form_func');
+add_shortcode('jtexpress_ph_track_form','jtexpress_ph_track_form_func');
 
 
 
@@ -242,7 +242,7 @@ add_shortcode('jtexpress_my_track_form','jtexpress_my_track_form_func');
 
 
 
-function jtexpress_my_track_details_func(){
+function jtexpress_ph_track_details_func(){
 
 
 if (isset($_GET['tnum']))
@@ -277,18 +277,18 @@ Please Enter a Valid Tracking Number
 
 
 
-    $jtexpress_my_tracking_api_url= get_option('jtexpress_my_tracking_api_url','http://localhost:5000/track/jtexpress_my_scraper_api');
+    $jtexpress_ph_tracking_api_url= get_option('jtexpress_ph_tracking_api_url','http://localhost:5000/track/jtexpress_ph_scraper_api');
 
-$jtexpress_my_tracking_api_url .= '?tnum=';
-$jtexpress_my_tracking_api_url .= $tnum;
+$jtexpress_ph_tracking_api_url .= '?tnum=';
+$jtexpress_ph_tracking_api_url .= $tnum;
 
 
 
-// print_r($jtexpress_my_tracking_api_url);
+// print_r($jtexpress_ph_tracking_api_url);
 
 // make request
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $jtexpress_my_tracking_api_url); 
+curl_setopt($ch, CURLOPT_URL, $jtexpress_ph_tracking_api_url); 
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
 $output = curl_exec($ch);   
 
@@ -300,11 +300,13 @@ if(curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200) {
 //   var_dump($output);
 }
 
+// var_dump($output);
+
 $res = json_decode($output, true);
 
 
 
-// $response=file_get_contents($jtexpress_my_tracking_api_url);
+// $response=file_get_contents($jtexpress_ph_tracking_api_url);
 
 
 // convert response
@@ -343,59 +345,10 @@ $content .="
 
 
 
-if(isset($res['origin'])){
-
-
-$content .="
-
-<h5 align='center'>
-Origin : 
-";
-
-$content .=$res['origin'];
-
-$content .="
-</h5>
-";
-
-}
-
-if(isset($res['destination'])){
-
-
-$content .="
-
-<h5 align='center'>
-Destination : 
-";
-
-$content .=$res['destination'];
-
-$content .="
-</h5>
-";
-
-}
-
-if(isset($res['status'])){
-
-
-$content .="
-
-<h5 align='center'>
-Status : 
-";
-
-$content .=$res['status'];
-
-$content .="
-</h5>
-";
-}
 
 
 
-if(isset($res['status_history']) == false){
+if(isset($res['status_histories']) == false){
 
 $content .="
 <h3 align='center'>
@@ -417,21 +370,7 @@ Nothing Found!!!
 
 
 
-								foreach($res['status_history'] as $status_history) 
-								{
-
-								$content .="
-
-								<h3 align='center'>
-
-								";
-
-								$content .=$status_history['date'];
-
-								$content .="
-								</h3>
-								";
-
+					
 
 
 
@@ -442,7 +381,7 @@ Nothing Found!!!
 								  <tr>
 								    <th>
 								        <h3 align="center">
-								        Time
+								        Date/Time
 								        </h3>
 								    </th>
 
@@ -452,17 +391,34 @@ Nothing Found!!!
 								        </h3>
 								    </th>
 
+									<th>
+								    <h3 align="center">
+								    City
+								    </h3>
+								</th>
+
 								    <th>
 								    <h3 align="center">
 								    Location
 								    </h3>
 								</th>
+
+								<th>
+								<h3 align="center">
+								Details
+								</h3>
+							</th>
 								  </tr>
 								</thead>
 								<tbody>
 								';
 
-								foreach($status_history['statuses'] as $status) 
+
+								$status_histories=array_reverse($res['status_histories']);
+
+								// $status_histories=$res['status_histories'];
+
+								foreach($status_histories as $status) 
 
 								{
 
@@ -480,7 +436,7 @@ Nothing Found!!!
 								    <td align="center">
 								    ';
 
-								$content .=$status['time'];
+								$content .=$status['datetime'];
 
 								$content .='
 								    </td>
@@ -496,7 +452,28 @@ Nothing Found!!!
 								    <td align="center">
 								   ';
 
+								$content .=$status['city'];
+
+
+
+
+								$content .='
+								    </td>
+
+								    <td align="center">
+								   ';
+
 								$content .=$status['location'];
+
+
+
+								$content .='
+								    </td>
+
+								    <td align="center">
+								   ';
+
+								$content .=$status['detail'];
 
 
 								$content .='
@@ -531,7 +508,6 @@ Nothing Found!!!
 
 
 
-								}
 
 
 }
@@ -557,7 +533,7 @@ $content .='
     return $content;
 };
 
-add_shortcode('jtexpress_my_track_details','jtexpress_my_track_details_func');
+add_shortcode('jtexpress_ph_track_details','jtexpress_ph_track_details_func');
 
 
 
