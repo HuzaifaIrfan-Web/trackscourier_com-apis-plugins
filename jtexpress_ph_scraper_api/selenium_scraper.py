@@ -13,7 +13,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 chrome_opt = Options()
-chrome_opt.add_argument('--headless')
+# chrome_opt.add_argument('--headless')
 chrome_opt.add_argument('--no-sandbox')
 chrome_opt.add_argument('--disable-dev-sh--usage')
 
@@ -108,6 +108,8 @@ def use_driver(tnum):
         # el = driver.find_element_by_class_name('bill_state_list')
 
         el = driver.find_element(By.CLASS_NAME, "bill_state_list")
+
+        els = driver.find_element(By.CLASS_NAME, "bill_state_item")
 
     except:
         print('No data Found')
