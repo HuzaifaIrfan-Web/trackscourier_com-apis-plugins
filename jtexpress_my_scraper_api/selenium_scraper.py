@@ -22,7 +22,7 @@ chrome_prefs["profile.managed_default_content_settings"] = {"images": 2}
 chrome_opt.experimental_options["prefs"] = chrome_prefs
 
 
-from settings import num_of_drivers
+from .settings import num_of_drivers
 
 
 drivers=[]

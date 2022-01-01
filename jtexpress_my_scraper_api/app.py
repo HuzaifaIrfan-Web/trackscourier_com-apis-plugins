@@ -3,15 +3,22 @@
 import json
 from flask import Flask, render_template, request, jsonify, redirect
 
-app = Flask(__name__)
 
-from settings import use_selenium
+# try:
+#     from .settings import use_selenium
+# except:
+#     from settings import use_selenium
 
-if use_selenium:
-    from selenium_scraper import return_details
-else:
-    from scraper import return_details
+# if use_selenium:
+#     from .selenium_scraper import return_details
+# else:
+#     from .scraper import return_details
  
+
+try:
+    from .scraper import return_details
+except:
+    from scraper import return_details
  
 
 
@@ -28,14 +35,14 @@ app = Flask(__name__)
 
 
 @app.route('/track/jtexpress_my_scraper_api',methods = ['GET'])
-def tracking():
+def jtexpress_my_track():
 
     # tnum=int(tnum_str)
 
     try:
 
         tnum = int(request.args.get('tnum'))
-        print(f'tnum: {tnum}')
+        print(f'jtexpress_my tnum: {tnum}')
 
     except:
         
