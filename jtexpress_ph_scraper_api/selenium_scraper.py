@@ -25,21 +25,40 @@ chrome_opt.experimental_options["prefs"] = chrome_prefs
 
 
 
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+
+firefox_opt = FirefoxOptions()
+firefox_opt.add_argument("--headless")
+firefox_opt.set_preference('permissions.default.stylesheet', 2)
+firefox_opt.set_preference('permissions.default.image', 2)
+firefox_opt.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
+
+
 drivers=[]
 
 for i in range(0,1):
 
     print(datetime.datetime.now(), end=' ')
 
-    print(f'Setting Up Chrome Selenium Driver {i}')
+    # print(f'Setting Up Chrome Selenium Driver {i}')
 
 
-    driver = webdriver.Chrome(options=chrome_opt)
+    # driver = webdriver.Chrome(options=chrome_opt)
+
+
+    print(f'Setting Up Firefox Selenium Driver {i}')
+
+
+    driver = webdriver.Firefox(options=firefox_opt)
+
+
     drivers.append({'use':None,'driver':driver,'epoch':0})
 
     print(datetime.datetime.now(), end=' ')
 
-    print(f'Started Chrome Selenium Driver {i}')
+    print(f'Started Firefox Selenium Driver {i}')
+
+    # print(f'Started Chrome Selenium Driver {i}')
 
 
 
