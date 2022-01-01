@@ -1,9 +1,9 @@
 version: "3"
 services:
 
-  jtexpress_scraper_api:
+  trackscourier_scraper_apis:
     build: .
-    container_name: jtexpress_scraper_api
+    container_name: trackscourier_scraper_apis
 
     
     restart: always
