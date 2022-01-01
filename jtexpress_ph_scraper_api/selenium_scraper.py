@@ -1,31 +1,46 @@
 
 from bs4 import BeautifulSoup
-import datetime
+
+
+
+import os
+
 
 import uuid
+
 import time
 
 
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-chrome_opt = Options()
-chrome_opt.add_argument('--headless')
-chrome_opt.add_argument('--no-sandbox')
-chrome_opt.add_argument('--disable-dev-sh--usage')
-
-chrome_prefs = {}
-chrome_prefs["profile.default_content_settings"] = {"images": 2}
-chrome_prefs["profile.managed_default_content_settings"] = {"images": 2}
-chrome_opt.experimental_options["prefs"] = chrome_prefs
-
-
-
-
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+
+
+
+
+
+
+
+try:
+
+    from .settings import use_firefox,num_of_drivers
+except:
+  
+    from settings import use_firefox,num_of_drivers
+
+
+
+
+
+
+import datetime
+
+
+drivers=[]
+
 
 firefox_opt = FirefoxOptions()
 firefox_opt.add_argument("--headless")
@@ -34,31 +49,42 @@ firefox_opt.set_preference('permissions.default.image', 2)
 firefox_opt.set_preference('dom.ipc.plugins.enabled.libflashplayer.so', 'false')
 
 
-drivers=[]
+from selenium.webdriver.chrome.options import Options
+chrome_opt = Options()
+chrome_opt.add_argument('--headless')
+chrome_opt.add_argument('--no-sandbox')
+chrome_opt.add_argument('--disable-dev-sh--usage')
 
-for i in range(0,1):
+# url='https://www.madhurcouriers.in/CNoteTracking'
+for i in range(0,num_of_drivers):
 
     print(datetime.datetime.now(), end=' ')
 
-    # print(f'Setting Up Chrome Selenium Driver {i}')
 
 
-    # driver = webdriver.Chrome(options=chrome_opt)
+    if use_firefox:
+        print(f'jtexpress_ph Setting Up Firefox Selenium Driver {i}')
+        driver = webdriver.Firefox(options=firefox_opt)
+    else:
+        print(f'jtexpress_ph Setting Up Chrome Selenium Driver {i}')
+        driver = webdriver.Chrome(options=chrome_opt)
 
 
-    print(f'jtexpress_ph Setting Up Firefox Selenium Driver {i}')
-
-
-    driver = webdriver.Firefox(options=firefox_opt)
+    # driver.get(url)
 
 
     drivers.append({'use':None,'driver':driver,'epoch':0})
 
     print(datetime.datetime.now(), end=' ')
 
-    print(f'jtexpress_ph Started Firefox Selenium Driver {i}')
+    if use_firefox:
 
-    # print(f'Started Chrome Selenium Driver {i}')
+        print(f'jtexpress_ph Started Firefox Selenium Driver {i}')
+    
+    else:
+
+        print(f'jtexpress_ph Started Chrome Selenium Driver {i}')
+
 
 
 
