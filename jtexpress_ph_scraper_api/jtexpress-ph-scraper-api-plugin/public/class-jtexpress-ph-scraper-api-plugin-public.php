@@ -6,8 +6,8 @@
  * @link       http://huzaifairfan.com/
  * @since      1.0.0
  *
- * @package    jtexpress_ph_Scraper_Api_Plugin
- * @subpackage jtexpress_ph_Scraper_Api_Plugin/public
+ * @package    Jtexpress_Ph_Scraper_Api_Plugin
+ * @subpackage Jtexpress_Ph_Scraper_Api_Plugin/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    jtexpress_ph_Scraper_Api_Plugin
- * @subpackage jtexpress_ph_Scraper_Api_Plugin/public
+ * @package    Jtexpress_Ph_Scraper_Api_Plugin
+ * @subpackage Jtexpress_Ph_Scraper_Api_Plugin/public
  * @author     Huzaifa Irfan <huzaifairfan2001@gmail.com>
  */
-class jtexpress_ph_Scraper_Api_Plugin_Public {
+class Jtexpress_Ph_Scraper_Api_Plugin_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -65,10 +65,10 @@ class jtexpress_ph_Scraper_Api_Plugin_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in jtexpress_ph_Scraper_Api_Plugin_Loader as all of the hooks are defined
+		 * defined in Jtexpress_Ph_Scraper_Api_Plugin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The jtexpress_ph_Scraper_Api_Plugin_Loader will then create the relationship
+		 * The Jtexpress_Ph_Scraper_Api_Plugin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -88,10 +88,10 @@ class jtexpress_ph_Scraper_Api_Plugin_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in jtexpress_ph_Scraper_Api_Plugin_Loader as all of the hooks are defined
+		 * defined in Jtexpress_Ph_Scraper_Api_Plugin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The jtexpress_ph_Scraper_Api_Plugin_Loader will then create the relationship
+		 * The Jtexpress_Ph_Scraper_Api_Plugin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */

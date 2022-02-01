@@ -9,8 +9,8 @@
  * @link       http://huzaifairfan.com/
  * @since      1.0.0
  *
- * @package    jtexpress_ph_Scraper_Api_Plugin
- * @subpackage jtexpress_ph_Scraper_Api_Plugin/includes
+ * @package    Jtexpress_Ph_Scraper_Api_Plugin
+ * @subpackage Jtexpress_Ph_Scraper_Api_Plugin/includes
  */
 
 /**
@@ -23,11 +23,11 @@
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    jtexpress_ph_Scraper_Api_Plugin
- * @subpackage jtexpress_ph_Scraper_Api_Plugin/includes
+ * @package    Jtexpress_Ph_Scraper_Api_Plugin
+ * @subpackage Jtexpress_Ph_Scraper_Api_Plugin/includes
  * @author     Huzaifa Irfan <huzaifairfan2001@gmail.com>
  */
-class jtexpress_ph_Scraper_Api_Plugin {
+class Jtexpress_Ph_Scraper_Api_Plugin {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -35,7 +35,7 @@ class jtexpress_ph_Scraper_Api_Plugin {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      jtexpress_ph_Scraper_Api_Plugin_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Jtexpress_Ph_Scraper_Api_Plugin_Loader    $loader    Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -67,8 +67,8 @@ class jtexpress_ph_Scraper_Api_Plugin {
 	 * @since    1.0.0
 	 */
 	public function __construct() {
-		if ( defined( 'jtexpress_ph_SCRAPER_API_PLUGIN_VERSION' ) ) {
-			$this->version = jtexpress_ph_SCRAPER_API_PLUGIN_VERSION;
+		if ( defined( 'Jtexpress_Ph_Scraper_Api_Plugin_VERSION' ) ) {
+			$this->version = Jtexpress_Ph_Scraper_Api_Plugin_VERSION;
 		} else {
 			$this->version = '1.0.0';
 		}
@@ -86,10 +86,10 @@ class jtexpress_ph_Scraper_Api_Plugin {
 	 *
 	 * Include the following files that make up the plugin:
 	 *
-	 * - jtexpress_ph_Scraper_Api_Plugin_Loader. Orchestrates the hooks of the plugin.
-	 * - jtexpress_ph_Scraper_Api_Plugin_i18n. Defines internationalization functionality.
-	 * - jtexpress_ph_Scraper_Api_Plugin_Admin. Defines all hooks for the admin area.
-	 * - jtexpress_ph_Scraper_Api_Plugin_Public. Defines all hooks for the public side of the site.
+	 * - Jtexpress_Ph_Scraper_Api_Plugin_Loader. Orchestrates the hooks of the plugin.
+	 * - Jtexpress_Ph_Scraper_Api_Plugin_i18n. Defines internationalization functionality.
+	 * - Jtexpress_Ph_Scraper_Api_Plugin_Admin. Defines all hooks for the admin area.
+	 * - Jtexpress_Ph_Scraper_Api_Plugin_Public. Defines all hooks for the public side of the site.
 	 *
 	 * Create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
@@ -111,6 +111,16 @@ class jtexpress_ph_Scraper_Api_Plugin {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-jtexpress-ph-scraper-api-plugin-i18n.php';
 
+
+
+
+		/**
+		 * The class responsible for defining shortcode functionality
+		 * of the plugin.
+		 */
+
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-jtexpress-ph-scraper-api-plugin-shortcode.php';
+
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
@@ -122,14 +132,14 @@ class jtexpress_ph_Scraper_Api_Plugin {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-jtexpress-ph-scraper-api-plugin-public.php';
 
-		$this->loader = new jtexpress_ph_Scraper_Api_Plugin_Loader();
+		$this->loader = new Jtexpress_Ph_Scraper_Api_Plugin_Loader();
 
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the jtexpress_ph_Scraper_Api_Plugin_i18n class in order to set the domain and to register the hook
+	 * Uses the Jtexpress_Ph_Scraper_Api_Plugin_i18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,7 +147,7 @@ class jtexpress_ph_Scraper_Api_Plugin {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new jtexpress_ph_Scraper_Api_Plugin_i18n();
+		$plugin_i18n = new Jtexpress_Ph_Scraper_Api_Plugin_i18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
 
@@ -152,7 +162,7 @@ class jtexpress_ph_Scraper_Api_Plugin {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new jtexpress_ph_Scraper_Api_Plugin_Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Jtexpress_Ph_Scraper_Api_Plugin_Admin( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
@@ -168,7 +178,7 @@ class jtexpress_ph_Scraper_Api_Plugin {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new jtexpress_ph_Scraper_Api_Plugin_Public( $this->get_plugin_name(), $this->get_version() );
+		$plugin_public = new Jtexpress_Ph_Scraper_Api_Plugin_Public( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
@@ -199,7 +209,7 @@ class jtexpress_ph_Scraper_Api_Plugin {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    jtexpress_ph_Scraper_Api_Plugin_Loader    Orchestrates the hooks of the plugin.
+	 * @return    Jtexpress_Ph_Scraper_Api_Plugin_Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;

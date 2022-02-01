@@ -111,6 +111,15 @@ class Jtexpress_My_Scraper_Api_Plugin {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-jtexpress-my-scraper-api-plugin-i18n.php';
 
+
+
+		/**
+		 * The class responsible for defining shortcode functionality
+		 * of the plugin.
+		 */
+
+		require_once plugin_dir_path(dirname(__FILE__)) . 'includes/class-jtexpress-my-scraper-api-plugin-shortcode.php';
+
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */

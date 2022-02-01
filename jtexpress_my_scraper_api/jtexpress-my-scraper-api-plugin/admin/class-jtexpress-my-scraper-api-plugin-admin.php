@@ -20,7 +20,8 @@
  * @subpackage Jtexpress_My_Scraper_Api_Plugin/admin
  * @author     Huzaifa Irfan <huzaifairfan2001@gmail.com>
  */
-class Jtexpress_My_Scraper_Api_Plugin_Admin {
+class Jtexpress_My_Scraper_Api_Plugin_Admin
+{
 
 	/**
 	 * The ID of this plugin.
@@ -47,11 +48,27 @@ class Jtexpress_My_Scraper_Api_Plugin_Admin {
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct($plugin_name, $version)
+	{
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+
+
+
+		function jtexpress_my_scraper_admin_page()
+		{
+			require_once 'partials/jtexpress-my-scraper-api-plugin-admin-display.php';
+		}
+
+		function jtexpress_my_scraper_admin()
+		{
+			add_menu_page('JTExpress.my Scraper Admin', 'JTExpress.my Scraper Admin', 'manage_options', 'jtexpress-my-scraper-admin', 'jtexpress_my_scraper_admin_page', '', 200);
+		}
+
+
+		add_action('admin_menu', 'jtexpress_my_scraper_admin');
 	}
 
 	/**
@@ -59,7 +76,8 @@ class Jtexpress_My_Scraper_Api_Plugin_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -73,8 +91,7 @@ class Jtexpress_My_Scraper_Api_Plugin_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/jtexpress-my-scraper-api-plugin-admin.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/jtexpress-my-scraper-api-plugin-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -82,7 +99,8 @@ class Jtexpress_My_Scraper_Api_Plugin_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -96,8 +114,6 @@ class Jtexpress_My_Scraper_Api_Plugin_Admin {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/jtexpress-my-scraper-api-plugin-admin.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/jtexpress-my-scraper-api-plugin-admin.js', array('jquery'), $this->version, false);
 	}
-
 }

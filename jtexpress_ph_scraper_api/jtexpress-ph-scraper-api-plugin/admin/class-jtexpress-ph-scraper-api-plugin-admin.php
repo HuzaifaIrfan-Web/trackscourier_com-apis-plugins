@@ -6,8 +6,8 @@
  * @link       http://huzaifairfan.com/
  * @since      1.0.0
  *
- * @package    jtexpress_ph_Scraper_Api_Plugin
- * @subpackage jtexpress_ph_Scraper_Api_Plugin/admin
+ * @package    Jtexpress_Ph_Scraper_Api_Plugin
+ * @subpackage Jtexpress_Ph_Scraper_Api_Plugin/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    jtexpress_ph_Scraper_Api_Plugin
- * @subpackage jtexpress_ph_Scraper_Api_Plugin/admin
+ * @package    Jtexpress_Ph_Scraper_Api_Plugin
+ * @subpackage Jtexpress_Ph_Scraper_Api_Plugin/admin
  * @author     Huzaifa Irfan <huzaifairfan2001@gmail.com>
  */
-class jtexpress_ph_Scraper_Api_Plugin_Admin {
+class Jtexpress_Ph_Scraper_Api_Plugin_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -52,6 +52,21 @@ class jtexpress_ph_Scraper_Api_Plugin_Admin {
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
+
+function jtexpress_ph_scraper_admin_page(){
+		require_once 'partials/jtexpress-ph-scraper-api-plugin-admin-display.php';
+}
+
+
+
+function jtexpress_ph_scraper_admin(){
+    add_menu_page('JTExpress.ph Scraper Admin','JTExpress.ph Scraper Admin','manage_options','jtexpress-ph-scraper-admin','jtexpress_ph_scraper_admin_page','',200);
+}
+
+
+		add_action('admin_menu','jtexpress_ph_scraper_admin');
+
+
 	}
 
 	/**
@@ -65,10 +80,10 @@ class jtexpress_ph_Scraper_Api_Plugin_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in jtexpress_ph_Scraper_Api_Plugin_Loader as all of the hooks are defined
+		 * defined in Jtexpress_Ph_Scraper_Api_Plugin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The jtexpress_ph_Scraper_Api_Plugin_Loader will then create the relationship
+		 * The Jtexpress_Ph_Scraper_Api_Plugin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
@@ -88,10 +103,10 @@ class jtexpress_ph_Scraper_Api_Plugin_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in jtexpress_ph_Scraper_Api_Plugin_Loader as all of the hooks are defined
+		 * defined in Jtexpress_Ph_Scraper_Api_Plugin_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The jtexpress_ph_Scraper_Api_Plugin_Loader will then create the relationship
+		 * The Jtexpress_Ph_Scraper_Api_Plugin_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */

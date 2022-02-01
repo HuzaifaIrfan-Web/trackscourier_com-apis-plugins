@@ -31,6 +31,21 @@ class Jtexpress_My_Scraper_Api_Plugin_Activator {
 	 */
 	public static function activate() {
 
+
+		$post = array(     
+			'post_content'   => '
+		   [jtexpress_my_track_form]
+		   [jtexpress_my_track_details]
+
+		   
+
+			', //content of page
+			'post_title'     =>'Jtexpress MY Shipment Details', //title of page
+			'post_status'    =>  'publish' , //status of page - publish or draft
+			'post_type'      =>  'page'  // type of post
+  );
+  wp_insert_post( $post ); // creates page
+
 	}
 
 }

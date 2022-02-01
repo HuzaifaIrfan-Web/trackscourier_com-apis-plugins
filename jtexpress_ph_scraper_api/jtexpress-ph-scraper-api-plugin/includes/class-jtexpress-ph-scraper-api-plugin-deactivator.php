@@ -6,8 +6,8 @@
  * @link       http://huzaifairfan.com/
  * @since      1.0.0
  *
- * @package    jtexpress_ph_Scraper_Api_Plugin
- * @subpackage jtexpress_ph_Scraper_Api_Plugin/includes
+ * @package    Jtexpress_Ph_Scraper_Api_Plugin
+ * @subpackage Jtexpress_Ph_Scraper_Api_Plugin/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's deactivation.
  *
  * @since      1.0.0
- * @package    jtexpress_ph_Scraper_Api_Plugin
- * @subpackage jtexpress_ph_Scraper_Api_Plugin/includes
+ * @package    Jtexpress_Ph_Scraper_Api_Plugin
+ * @subpackage Jtexpress_Ph_Scraper_Api_Plugin/includes
  * @author     Huzaifa Irfan <huzaifairfan2001@gmail.com>
  */
-class jtexpress_ph_Scraper_Api_Plugin_Deactivator {
+class Jtexpress_Ph_Scraper_Api_Plugin_Deactivator {
 
 	/**
 	 * Short Description. (use period)

@@ -22,7 +22,7 @@
  * @link       http://huzaifairfan.com/
  * @since      1.0.0
  *
- * @package    jtexpress_ph_Scraper_Api_Plugin
+ * @package    Jtexpress_Ph_Scraper_Api_Plugin
  */
 
 // If uninstall not called from WordPress, then exit.

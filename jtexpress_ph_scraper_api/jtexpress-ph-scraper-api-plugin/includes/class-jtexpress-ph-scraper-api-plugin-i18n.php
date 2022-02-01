@@ -9,8 +9,8 @@
  * @link       http://huzaifairfan.com/
  * @since      1.0.0
  *
- * @package    jtexpress_ph_Scraper_Api_Plugin
- * @subpackage jtexpress_ph_Scraper_Api_Plugin/includes
+ * @package    Jtexpress_Ph_Scraper_Api_Plugin
+ * @subpackage Jtexpress_Ph_Scraper_Api_Plugin/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    jtexpress_ph_Scraper_Api_Plugin
- * @subpackage jtexpress_ph_Scraper_Api_Plugin/includes
+ * @package    Jtexpress_Ph_Scraper_Api_Plugin
+ * @subpackage Jtexpress_Ph_Scraper_Api_Plugin/includes
  * @author     Huzaifa Irfan <huzaifairfan2001@gmail.com>
  */
-class jtexpress_ph_Scraper_Api_Plugin_i18n {
+class Jtexpress_Ph_Scraper_Api_Plugin_i18n {
 
 
 	/**
