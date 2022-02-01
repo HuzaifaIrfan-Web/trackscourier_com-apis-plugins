@@ -25,9 +25,9 @@ $jtexpress_my_tracking_details_url= get_option('jtexpress_my_tracking_details_ur
 <form method='get' action='<?php echo $jtexpress_my_tracking_details_url; ?>'>
 
 	<div style='display:flex;  justify-content:center;'>
-
-		<input name='tnum' type='text' placeholder='Tracking Number' value='<?php echo isset($_REQUEST["tnum"]) ? $_REQUEST["tnum"] : ""; ?>' />
-		<input type='submit' value='Track' />
+	
+		<input name='tnum' type='text' style='width: 75%;margin-right: 2%; border-radius:3px;'  placeholder='Enter J&T Express MY Tracking Number' value='<?php echo isset($_REQUEST["tnum"]) ? $_REQUEST["tnum"] : ""; ?>' />
+		<input style='width:22%; color: #ffffff; background: #ff9900; font-weight:bold; text-transform:uppercase; border-radius:3px;'  type='submit' value='Track' />
 
 	</div>
 </form>
