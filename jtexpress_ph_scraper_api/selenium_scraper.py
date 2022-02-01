@@ -2,19 +2,34 @@
 from bs4 import BeautifulSoup
 
 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 import os
+
+import time
 
 
 import uuid
 
 
+
 try:
 
-    from .driver_controller import *
+    from .Driver_Controller import Driver_Controller
+
 except:
-  
-    from driver_controller import *
+
+    from Driver_Controller import Driver_Controller
+    
+
+
+
+driver_controller=Driver_Controller()
+
+
 
 
 
@@ -23,15 +38,17 @@ except:
 def use_driver(tnum):
    
   
-    id = uuid.uuid1().hex
+    req_id = uuid.uuid1().hex
 
     selecting=True
     while selecting:
 
-        index,driver=select_driver(id)
+        driver_index,driver=driver_controller.select_driver(req_id)
 
-        if drivers[index]['use']==id:
+        if driver_controller.check_driver_use(driver_index,req_id):
             selecting=False
+
+
 
     # print('driver selected')
 
@@ -52,9 +69,11 @@ def use_driver(tnum):
 
 
     except:
-        print('No data Found')
-        drivers[index]['use'] =None
-        return False
+        print('No bill_state_list Found')
+ 
+        driver_controller.release_driver(driver_index,req_id)
+    
+        raise Exception
 
     innerHtml=el.get_attribute('innerHTML')
 
@@ -62,9 +81,20 @@ def use_driver(tnum):
         
 
 
-    drivers[index]['use'] =None
+ 
+    driver_controller.release_driver(driver_index,req_id)
 
-    return soup
+    
+
+    try:
+        status_histories=extract_status_history(soup)
+        print(f'{req_id} Driver {driver_index} Got Response')
+        return {'tnum':tnum,'status_histories':status_histories}
+    
+    except:
+        print(f'{req_id} Driver {driver_index} Got NO Response')
+        raise Exception
+
 
 def extract_status_history(soup):
 
@@ -72,7 +102,7 @@ def extract_status_history(soup):
 
     if len(histories_div) <=0:
         print('histories_div length zero')
-        return False
+        raise Exception
 
 
     status_histories=[]
@@ -135,7 +165,7 @@ def extract_status_history(soup):
     
 
 
-
+ 
     return status_histories
                 
 
@@ -145,17 +175,7 @@ def return_details(tnum):
     
 
 
-    soup=use_driver(tnum)
-
-    if soup == False:
-        return False
-
-    # print('got soup')
-
-    status_histories=extract_status_history(soup)
-    return_obj={'tnum':tnum,'status_histories':status_histories}
-
-
+    return_obj=use_driver(tnum)
 
     return return_obj
 

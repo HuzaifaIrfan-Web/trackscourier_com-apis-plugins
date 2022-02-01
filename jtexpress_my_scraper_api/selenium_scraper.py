@@ -2,20 +2,34 @@
 from bs4 import BeautifulSoup
 
 
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 import os
+
+import time
 
 
 import uuid
 
-import time
+
 
 try:
 
-    from .driver_controller import *
+    from .Driver_Controller import Driver_Controller
+
 except:
-  
-    from driver_controller import *
+
+    from Driver_Controller import Driver_Controller
+    
+
+
+
+driver_controller=Driver_Controller()
+
+
 
 
 
@@ -23,20 +37,27 @@ except:
 def use_driver(tnum):
    
   
-    id = uuid.uuid1().hex
+    req_id = uuid.uuid1().hex
 
     selecting=True
     while selecting:
 
-        index,driver=select_driver(id)
+        driver_index,driver=driver_controller.select_driver(req_id)
 
-        if drivers[index]['use']==id:
+        if driver_controller.check_driver_use(driver_index,req_id):
             selecting=False
+
 
     # print('driver selected')
 
     url=f'https://www.jtexpress.my/tracking/{tnum}'
     driver.get(url)
+    
+    time.sleep(1)
+    driver.execute_script("captcha.options.onSuccess()")
+    time.sleep(2)
+
+
 
 
 
@@ -44,23 +65,41 @@ def use_driver(tnum):
         # print('waiting')
         # WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, "//*[@class='accordion']")))
         
-        el = driver.find_element_by_class_name('accordion')
+    
+
+        el = driver.find_element(By.CLASS_NAME, "accordion")
+
+        innerHtml=el.get_attribute('innerHTML')
+
+        soup = BeautifulSoup(innerHtml, 'html.parser')
+
+
 
 
 
     except:
         print('No data Found')
-        drivers[index]['use'] =None
-        return False
+ 
+        driver_controller.release_driver(driver_index,req_id)
+    
+        raise Exception
         
-    innerHtml=el.get_attribute('innerHTML')
 
-    soup = BeautifulSoup(innerHtml, 'html.parser')
+ 
+    driver_controller.release_driver(driver_index,req_id)
+
+    response=extract_tracking_details(soup,tnum)
 
 
-    drivers[index]['use'] =None
+    try:
+        
+        print(f'{req_id} Driver {driver_index} Got Response')
+        return response
+    
+    except:
+        print(f'{req_id} Driver {driver_index} Got NO Response')
+        raise Exception
 
-    return soup
 
 
 
@@ -103,8 +142,8 @@ def extract_tracking_details(soup,tnum):
 
     alert=soup.find(class_="alert")
     if alert:
-        print('Sorry, information not found')
-        return False
+        print('Sorry, information not found Alert Shown')
+        raise Exception
 
 
     direction=soup.find(class_="col-12 text-start").text.strip().split()
@@ -136,14 +175,9 @@ def return_details(tnum):
     
 
 
-    soup=use_driver(tnum)
+    return_obj=use_driver(tnum)
 
-    if soup == False:
-        return False
+    return return_obj
 
-    # print('got soup')
-    tracking_details=extract_tracking_details(soup,tnum)
-
-    return tracking_details
 
 
